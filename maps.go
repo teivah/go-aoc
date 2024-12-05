@@ -1,7 +1,7 @@
 package aoc
 
-// MapGet performs a get or init in an inner map.
-func MapGet[K1 comparable, K2 comparable, X any](m map[K1]map[K2]X, k K1, cap ...int) map[K2]X {
+// InnerMapGet performs a get or init in an inner map.
+func InnerMapGet[K1 comparable, K2 comparable, X any](m map[K1]map[K2]X, k K1, cap ...int) map[K2]X {
 	v, ok := m[k]
 	if !ok {
 		if len(cap) != 0 {

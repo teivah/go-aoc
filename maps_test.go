@@ -12,8 +12,8 @@ func TestMapGet(t *testing.T) {
 			10: 100,
 		},
 	}
-	assert.Equal(t, map[int]int{10: 100}, MapGet(m, 1))
-	assert.Equal(t, map[int]int{}, MapGet(m, 2))
+	assert.Equal(t, map[int]int{10: 100}, InnerMapGet(m, 1))
+	assert.Equal(t, map[int]int{}, InnerMapGet(m, 2))
 	assert.Equal(t, map[int]int{}, m[2])
-	assert.Equal(t, map[int]int{}, MapGet(m, 3, 10))
+	assert.Equal(t, map[int]int{}, InnerMapGet(m, 3, 10))
 }

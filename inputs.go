@@ -66,7 +66,7 @@ func NewDelimiter(s, del string, opts ...DelimiterOption) Delimiter {
 	}
 
 	return Delimiter{
-		ind:       FindStringIndices(s, del),
+		ind:       StringFindIndices(s, del),
 		s:         s,
 		del:       del,
 		trimSpace: options.trimSpace,
