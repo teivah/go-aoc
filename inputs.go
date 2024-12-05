@@ -25,7 +25,8 @@ func ReaderToStrings(input io.Reader) []string {
 	return res
 }
 
-// ReaderToInts converts optimistically an io.Reader into a slice of strings.
+// ReaderToInts converts an io.Reader into a slice of strings. It panics in case
+// of a parsing error.
 func ReaderToInts(input io.Reader) []int {
 	scanner := bufio.NewScanner(input)
 	var res []int

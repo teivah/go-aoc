@@ -1,5 +1,7 @@
 package aoc
 
+import "fmt"
+
 // DAGNode is a DAG node.
 type DAGNode[K comparable, V any] struct {
 	Id   K
@@ -98,7 +100,7 @@ func TopologicalSort[K comparable](vertices []K, edgesFunc func(K) []K) []K {
 	}
 
 	if len(res) != len(vertices) {
-		panic("graph error")
+		panic(fmt.Sprintf("input graph error: %d != %d", len(res), len(vertices)))
 	}
 	return res
 }
