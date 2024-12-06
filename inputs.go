@@ -220,12 +220,12 @@ func NewBoard[T any](positions map[Position]T) Board[T] {
 }
 
 // NewBoardFromReader creates a board from an input reader.
-func NewBoardFromReader[T any](input io.Reader, f func(r rune) T) Board[T] {
+func NewBoardFromReader[T any](input io.Reader, f func(row, col int, r rune) T) Board[T] {
 	lines := ReaderToStrings(input)
 	positions := make(map[Position]T, len(lines)*len(lines[0]))
 	for row, line := range lines {
 		for col, r := range line {
-			positions[NewPosition(row, col)] = f(r)
+			positions[NewPosition(row, col)] = f(row, col, r)
 		}
 	}
 	return NewBoard(positions)
