@@ -1,24 +1,24 @@
 package aoc
 
-// PriorityQueue is a priority queue implementation.
-type PriorityQueue[T comparable] struct {
+// Heap is a priority queue implementation.
+type Heap[T comparable] struct {
 	items      []T
 	comparator func(a, b T) bool
 }
 
-// NewPriorityQueue creates a new PriorityQueue using a comparator.
-func NewPriorityQueue[T comparable](comparator func(a, b T) bool) PriorityQueue[T] {
-	return PriorityQueue[T]{comparator: comparator}
+// NewHeap creates a new Heap using a comparator.
+func NewHeap[T comparable](comparator func(a, b T) bool) Heap[T] {
+	return Heap[T]{comparator: comparator}
 }
 
 // Push pushes a new item.
-func (pq *PriorityQueue[T]) Push(item T) {
+func (pq *Heap[T]) Push(item T) {
 	pq.items = append(pq.items, item)
 	pq.heapifyUp(len(pq.items) - 1)
 }
 
 // Pop removes and returns the top element from the priority queue.
-func (pq *PriorityQueue[T]) Pop() T {
+func (pq *Heap[T]) Pop() T {
 	top := pq.items[0]
 	lastIndex := len(pq.items) - 1
 	pq.items[0], pq.items[lastIndex] = pq.items[lastIndex], pq.items[0]
@@ -28,21 +28,21 @@ func (pq *PriorityQueue[T]) Pop() T {
 }
 
 // Peek returns the top element of the priority queue without removing it.
-func (pq *PriorityQueue[T]) Peek() T {
+func (pq *Heap[T]) Peek() T {
 	return pq.items[0]
 }
 
 // Len returns the number of elements in the priority queue.
-func (pq *PriorityQueue[T]) Len() int {
+func (pq *Heap[T]) Len() int {
 	return len(pq.items)
 }
 
 // IsEmpty checks if the priority queue is empty.
-func (pq *PriorityQueue[T]) IsEmpty() bool {
+func (pq *Heap[T]) IsEmpty() bool {
 	return len(pq.items) == 0
 }
 
-func (pq *PriorityQueue[T]) heapifyUp(index int) {
+func (pq *Heap[T]) heapifyUp(index int) {
 	for index > 0 {
 		parentIndex := (index - 1) / 2
 		if pq.comparator(pq.items[index], pq.items[parentIndex]) {
@@ -54,7 +54,7 @@ func (pq *PriorityQueue[T]) heapifyUp(index int) {
 	}
 }
 
-func (pq *PriorityQueue[T]) heapifyDown(index int) {
+func (pq *Heap[T]) heapifyDown(index int) {
 	for {
 		leftChild := 2*index + 1
 		rightChild := 2*index + 2

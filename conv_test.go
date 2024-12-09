@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	aoc "github.com/teivah/advent-of-code"
+	"github.com/teivah/go-aoc"
 )
 
 func TestMapToSlice(t *testing.T) {

@@ -4,14 +4,14 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	aoc "github.com/teivah/advent-of-code"
+	"github.com/teivah/go-aoc"
 )
 
-func TestNewPriorityQueue(t *testing.T) {
+func TestNewHeap(t *testing.T) {
 	type person struct {
 		age int
 	}
-	pq := aoc.NewPriorityQueue[person](func(a, b person) bool {
+	pq := aoc.NewHeap[person](func(a, b person) bool {
 		return a.age < b.age
 	})
 	pq.Push(person{age: 2})

@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	aoc "github.com/teivah/advent-of-code"
+	"github.com/teivah/go-aoc"
 )
 
 func TestDelimiter(t *testing.T) {
