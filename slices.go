@@ -12,15 +12,26 @@ func SliceCopy[T any](in []T) []T {
 	return res
 }
 
-func FilterSliceIndices[T any](in []T, indices []int) []T {
+// DeleteSliceIndex deletes a given index.
+func DeleteSliceIndex[T any](in []T, index int, deepCopy bool) []T {
+	if deepCopy {
+		in = SliceCopy(in)
+	}
+	return append(in[:index], in[index+1:]...)
+}
+
+// DeleteSliceIndices deletes a list of indices.
+func DeleteSliceIndices[T any](in []T, indices []int, deepCopy bool) []T {
 	if len(in) == 0 {
 		return nil
 	}
-	e := SliceCopy(in)
+	if deepCopy {
+		in = SliceCopy(in)
+	}
 	set := SliceToSet(indices)
 
 	i := 0
-	return slices.DeleteFunc(e, func(t T) bool {
+	return slices.DeleteFunc(in, func(t T) bool {
 		defer func() {
 			i++
 		}()
