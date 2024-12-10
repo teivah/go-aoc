@@ -8,7 +8,8 @@ import (
 type Direction int
 
 const (
-	Up Direction = iota
+	UnknownDirection Direction = iota
+	Up
 	Down
 	Left
 	Right
