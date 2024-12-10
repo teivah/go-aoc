@@ -23,6 +23,8 @@ const (
 // Rev reverses the current direction.
 func (d Direction) Rev() Direction {
 	switch d {
+	case UnknownDirection:
+		return UnknownDirection
 	case Up:
 		return Down
 	case Down:
