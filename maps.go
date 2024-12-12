@@ -13,3 +13,11 @@ func InnerMapGet[K1 comparable, K2 comparable, X any](m map[K1]map[K2]X, k K1, c
 	}
 	return v
 }
+
+func MapCopy[K comparable, V any](m map[K]V) map[K]V {
+	res := make(map[K]V, len(m))
+	for k, v := range m {
+		res[k] = v
+	}
+	return res
+}
