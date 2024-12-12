@@ -1,6 +1,7 @@
 package aoc_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -37,4 +38,12 @@ func TestLocation(t *testing.T) {
 	assert.Equal(t, aoc.Location{Dir: aoc.Up, Pos: aoc.Position{Row: 0, Col: 1}}, l.Rev(1))
 	assert.Equal(t, aoc.Location{Dir: aoc.Down, Pos: aoc.Position{Row: 2, Col: 1}}, l.Straight(1))
 	assert.Equal(t, aoc.Location{Dir: aoc.Left, Pos: aoc.Position{Row: 1, Col: 0}}, l.Move(aoc.Left, 1))
+}
+
+func TestName(t *testing.T) {
+	positions := map[aoc.Position]struct{}{
+		aoc.NewPosition(-1, 1): {},
+		aoc.NewPosition(2, 2):  {},
+	}
+	fmt.Printf("%v\n", aoc.MapPositionsToString(positions))
 }

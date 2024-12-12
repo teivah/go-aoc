@@ -2,6 +2,9 @@ package aoc
 
 import (
 	"fmt"
+	"math"
+	"strconv"
+	"strings"
 )
 
 // Direction enum
@@ -160,6 +163,43 @@ func (p Position) Move(direction Direction, moves int) Position {
 	}
 
 	panic("not handled")
+}
+
+func SlicePositionsToString(positions []Position) string {
+	if len(positions) == 0 {
+		return ""
+	}
+	minRow := math.MaxInt
+	minCol := math.MaxInt
+	maxRow := math.MinInt
+	maxCol := math.MinInt
+	set := make(map[Position]bool)
+	for _, pos := range positions {
+		set[pos] = true
+		minRow = min(minRow, pos.Row)
+		minCol = min(minCol, pos.Col)
+		maxRow = max(maxRow, pos.Row)
+		maxCol = max(maxCol, pos.Col)
+	}
+
+	lines := make([]string, 0, maxRow-minRow+1)
+	lines = append(lines, strconv.Itoa(minCol))
+	for row := minRow; row <= maxRow; row++ {
+		sb := strings.Builder{}
+		for col := minCol; col <= maxCol; col++ {
+			if set[NewPosition(row, col)] {
+				sb.WriteRune('x')
+			} else {
+				sb.WriteRune('.')
+			}
+		}
+		lines = append(lines, fmt.Sprintf("%s %d", sb.String(), row))
+	}
+	return strings.Join(lines, "\n")
+}
+
+func MapPositionsToString[V any](positions map[Position]V) string {
+	return SlicePositionsToString(MapKeysToSlice(positions))
 }
 
 // Location represents a given position and direction.
