@@ -219,6 +219,17 @@ func NewBoard[T any](positions map[Position]T) Board[T] {
 	return board
 }
 
+func NewBoardWithLength[T any](positions map[Position]T, rows, cols int) Board[T] {
+	board := Board[T]{
+		Positions: positions,
+		MinRows:   0,
+		MinCols:   0,
+		MaxRows:   rows,
+		MaxCols:   cols,
+	}
+	return board
+}
+
 func NewBoardFromLength[T any](fromRow, toRow, fromCol, toCol int, zero T) Board[T] {
 	board := Board[T]{
 		Positions: make(map[Position]T, (toRow-fromRow)*(toCol-fromCol)),
