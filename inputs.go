@@ -219,6 +219,22 @@ func NewBoard[T any](positions map[Position]T) Board[T] {
 	return board
 }
 
+func NewBoardFromLength[T any](fromRow, toRow, fromCol, toCol int, zero T) Board[T] {
+	board := Board[T]{
+		Positions: make(map[Position]T, (toRow-fromRow)*(toCol-fromCol)),
+		MinRows:   fromRow,
+		MinCols:   fromCol,
+		MaxRows:   toRow,
+		MaxCols:   toCol,
+	}
+	for row := fromRow; row < toRow; row++ {
+		for col := fromCol; col < toCol; col++ {
+			board.Positions[NewPosition(row, col)] = zero
+		}
+	}
+	return board
+}
+
 // NewBoardFromReader creates a board from an input reader.
 func NewBoardFromReader[T any](input io.Reader, f func(row, col int, r rune) T) Board[T] {
 	lines := ReaderToStrings(input)
