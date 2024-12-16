@@ -7,7 +7,7 @@ type Heap[T any] struct {
 }
 
 // NewHeap creates a new Heap using a comparator.
-func NewHeap[T comparable](comparator func(a, b T) bool) Heap[T] {
+func NewHeap[T any](comparator func(a, b T) bool) Heap[T] {
 	return Heap[T]{comparator: comparator}
 }
 
