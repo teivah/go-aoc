@@ -1,7 +1,7 @@
 package aoc
 
 // Heap is a priority queue implementation.
-type Heap[T comparable] struct {
+type Heap[T any] struct {
 	items      []T
 	comparator func(a, b T) bool
 }
