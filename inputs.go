@@ -290,12 +290,13 @@ func (b Board[T]) Contains(position Position) bool {
 }
 
 // String returns the board representation.
-func (b Board[T]) String(f func(T) rune, missing rune) string {
+func (b Board[T]) String(f func(Position, T) rune, missing rune) string {
 	sb := strings.Builder{}
 	for row := b.MinRows; row < b.MaxRows; row++ {
 		for col := b.MinCols; col < b.MaxCols; col++ {
-			if t, exists := b.Positions[Position{Row: row, Col: col}]; exists {
-				r := f(t)
+			pos := Position{Row: row, Col: col}
+			if t, exists := b.Positions[pos]; exists {
+				r := f(pos, t)
 				sb.WriteRune(r)
 			} else {
 				sb.WriteRune(missing)
