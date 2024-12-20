@@ -1,6 +1,7 @@
 package aoc_test
 
 import (
+	"strconv"
 	"strings"
 	"testing"
 
@@ -50,5 +51,9 @@ func TestParseBoard(t *testing.T) {
 	assert.Equal(t, 2, board.MaxRows)
 	assert.Equal(t, 2, board.MaxCols)
 
-	assert.Equal(t, inputStr+"\n", board.String(aoc.IntToRune, '?'))
+	assert.Equal(t, inputStr+"\n", board.String(intToRune, '?'))
+}
+
+func intToRune(_ aoc.Position, i int) rune {
+	return []rune(strconv.Itoa(i))[0]
 }
